@@ -2,7 +2,7 @@
 module "gmail_smtp_function" {
 
   source  = "terraform-aws-modules/lambda/aws"
-  version = "3.3.1"
+  version = "7.0.0"
 
   function_name = "gmail-smtp-function"
   description   = "The lambda for sending emails from contact forms"
