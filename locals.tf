@@ -12,6 +12,8 @@ locals {
 
   constants = {
 
+    owner_email_address = "mervinhemaraju16@gmail.com"
+
     # > Lambda default configurations
     lambda = {
       SOURCE_PATH          = "./functions/email-function/"

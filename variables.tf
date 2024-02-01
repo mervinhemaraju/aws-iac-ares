@@ -6,7 +6,7 @@ variable "region" {
   default     = "eu-west-1"
 }
 
-variable "gmail_app_token" {
+variable "token_doppler_iac_cloud_main" {
   type        = string
-  description = "The GMAIL app token for the email sending lambda."
+  description = "The Doppler token for the secrets manager cloud main repo."
 }

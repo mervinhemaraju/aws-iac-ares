@@ -15,7 +15,7 @@ resource "aws_budgets_budget" "aws_monthly_limit_budget" {
     threshold                  = 50
     threshold_type             = "PERCENTAGE"
     notification_type          = "ACTUAL"
-    subscriber_email_addresses = ["mervinhemaraju16@gmail.com"]
+    subscriber_email_addresses = [local.constants.owner_email_address]
   }
 
   # * Forecasted budget notifications
@@ -24,7 +24,7 @@ resource "aws_budgets_budget" "aws_monthly_limit_budget" {
     threshold                  = 90
     threshold_type             = "PERCENTAGE"
     notification_type          = "FORECASTED"
-    subscriber_email_addresses = ["mervinhemaraju16@gmail.com"]
+    subscriber_email_addresses = [local.constants.owner_email_address]
   }
 }
 
@@ -44,6 +44,6 @@ resource "aws_budgets_budget" "aws_zero_spend_budget" {
     threshold                  = 0
     threshold_type             = "ABSOLUTE_VALUE"
     notification_type          = "ACTUAL"
-    subscriber_email_addresses = ["mervinhemaraju16@gmail.com"]
+    subscriber_email_addresses = [local.constants.owner_email_address]
   }
 }

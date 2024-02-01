@@ -10,6 +10,11 @@ provider "aws" {
   }
 }
 
+# * Doppler Provider for Secrets Manager
+provider "doppler" {
+  doppler_token = var.token_doppler_iac_cloud_main
+}
+
 # * The Terraform Module
 terraform {
 
@@ -21,6 +26,10 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "5.32.0"
+    }
+
+    doppler = {
+      source = "DopplerHQ/doppler"
     }
   }
 }

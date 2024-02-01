@@ -29,8 +29,8 @@ module "gmail_smtp_function" {
   attach_cloudwatch_logs_policy = true
 
   environment_variables = {
-    RECEIVER_EMAIL     = "mervinhemaraju16@gmail.com"
-    GMAIL_APP_PASSWORD = var.gmail_app_token # TODO(Add KMS encryption)
+    RECEIVER_EMAIL     = local.constants.owner_email_address
+    GMAIL_APP_PASSWORD = data.doppler_secrets.prod_main.map.GMAIL_PERSONAL_APP_PASSWORD # TODO(Add KMS encryption)
   }
 
   trusted_entities = local.constants.lambda.TRUSTED_ENTITIES
