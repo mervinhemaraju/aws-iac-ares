@@ -58,17 +58,7 @@ resource "aws_dynamodb_table" "mo_bizin_travay" {
   }
 
   attribute {
-    name = "posted_date"
-    type = "S"
-  }
-
-  attribute {
     name = "recruiter"
-    type = "S"
-  }
-
-  attribute {
-    name = "link"
     type = "S"
   }
 
