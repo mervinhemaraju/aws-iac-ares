@@ -53,7 +53,7 @@ resource "aws_dynamodb_table" "mo_bizin_travay" {
   }
 
   attribute {
-    name = "title"
+    name = "posted_date"
     type = "S"
   }
 
