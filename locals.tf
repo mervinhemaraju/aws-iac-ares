@@ -4,9 +4,11 @@ locals {
   tags = {
     default = {
       Creator     = "mervin.hemaraju"
-      Project     = "Ares"
+      Owner       = "mervin.hemaraju"
+      Project     = "https://github.com/mervinhemaraju/aws-iac-ares"
       Usage       = "Personal"
       Environment = "Production"
+      Codename    = "Ares"
     }
   }
 
@@ -40,5 +42,11 @@ locals {
       }
     }
 
+    oidc = {
+      github = {
+        url      = "https://token.actions.githubusercontent.com"
+        audience = "sts.amazonaws.com"
+      }
+    }
   }
 }

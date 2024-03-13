@@ -1,6 +1,7 @@
-# * Define our data source to fetch secrets
+# Fetch secrets from Doppler secrets manager
 data "doppler_secrets" "prod_main" {}
 
-data "tls_certificate" "example" {
-  url = "https://token.actions.githubusercontent.com"
+# Get the TLS certificate from Github tokens
+data "tls_certificate" "github" {
+  url = local.constants.oidc.github.url
 }
