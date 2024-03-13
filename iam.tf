@@ -24,7 +24,7 @@ resource "aws_iam_role" "oidc_github" {
       github_oidc_audience = "sts.amazonaws.com"
     }
   )
-  managed_policy_arns = [aws_iam_policy.lambda.arn]
+  managed_policy_arns = [aws_iam_policy.oidc_github.arn]
 }
 
 
