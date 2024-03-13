@@ -1,5 +1,5 @@
-# * Create a parameter store for item categories
-# * for website Jeeyah
+# Create a parameter store for item categories
+# for website Jeeyah
 resource "aws_ssm_parameter" "ssm_parameter_jeeyah_items_categories" {
   name        = "jeeyah_items_categories"
   type        = "StringList"

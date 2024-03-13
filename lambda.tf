@@ -1,4 +1,4 @@
-# * Python lambda for Email Sending
+# Python lambda for Email Sending
 module "gmail_smtp_function" {
 
   source  = "terraform-aws-modules/lambda/aws"
