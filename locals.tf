@@ -9,6 +9,7 @@ locals {
       Usage       = "Personal"
       Environment = "Production"
       Codename    = "Ares"
+      Terraform   = "Yes"
     }
   }
 
