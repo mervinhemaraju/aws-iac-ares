@@ -1,11 +1,11 @@
 # Python lambda for Email Sending
-module "gmail_smtp_function" {
+module "portfolio_contact_me" {
 
   source  = "terraform-aws-modules/lambda/aws"
   version = "7.0.0"
 
-  function_name = "gmail-smtp-function"
-  description   = "The lambda for sending emails from contact forms"
+  function_name = "portfolio-contact-me"
+  description   = "The lambda for contacting me from my Portfolio."
   handler       = local.constants.lambda.HANDLER
   runtime       = local.constants.lambda.VERSION
 
@@ -20,17 +20,23 @@ module "gmail_smtp_function" {
   authorization_type         = "NONE"
   cors = {
     allow_credentials = false
-    allow_origins     = ["https://www.mervinhemaraju.com", "http://127.0.0.1:5500"]
-    allow_methods     = ["POST"]
-    allow_headers     = ["*"]
-    expose_headers    = ["*"]
+    allow_origins = [
+      "https://www.mervinhemaraju.com",
+      "https://mervinhemaraju.com",
+      "http://127.0.0.1:5500" # Uncomment for testing purposes
+    ]
+    allow_methods  = ["POST"]
+    allow_headers  = ["*"]
+    expose_headers = ["*"]
   }
 
   attach_cloudwatch_logs_policy = true
 
   environment_variables = {
-    RECEIVER_EMAIL     = local.constants.owner_email_address
-    GMAIL_APP_PASSWORD = data.doppler_secrets.prod_main.map.GMAIL_PERSONAL_APP_PASSWORD # TODO(Add KMS encryption)
+    RECEIVER_EMAIL       = local.constants.owner_email_address
+    GMAIL_APP_PASSWORD   = data.doppler_secrets.prod_main.map.GMAIL_PERSONAL_APP_PASSWORD # TODO(Add KMS encryption)
+    SLACK_CHANNEL_MAIN   = var.slack_channel_main
+    SLACK_CHANNEL_ALERTS = var.slack_channel_alerts
   }
 
   trusted_entities = local.constants.lambda.TRUSTED_ENTITIES
