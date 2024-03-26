@@ -19,7 +19,7 @@ locals {
 
     # > Lambda default configurations
     lambda = {
-      SOURCE_PATH          = "./functions/email-function/"
+      SOURCE_PATH          = "./functions/portfolio-contact-me/"
       RETRIES_ATTEMPT      = 0
       TIMEOUT              = "60"
       HANDLER              = "main.main"
