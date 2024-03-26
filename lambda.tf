@@ -23,7 +23,7 @@ module "portfolio_contact_me" {
     allow_origins = [
       "https://www.mervinhemaraju.com",
       "https://mervinhemaraju.com",
-      "http://127.0.0.1:5500" # Uncomment for testing purposes
+      "*" # Uncomment for testing purposes
     ]
     allow_methods  = ["POST"]
     allow_headers  = ["*"]
