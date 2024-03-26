@@ -90,7 +90,7 @@ def main(event, context):
         # Post to slack
         post_to_slack(
             blocks=block_message(
-                sender_email == sender_email,
+                sender_email=sender_email,
                 sender_name=sender_name,
                 message=email_body,
             )
