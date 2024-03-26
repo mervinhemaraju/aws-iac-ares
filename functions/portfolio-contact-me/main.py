@@ -78,7 +78,7 @@ def main(event, context):
         logging.info(f"email_body: {email_body}")
 
         # * Define a subject
-        subject = f"{originator} :: From: {sender_name} :: To: {sender_email}"
+        subject = f"{originator} :: From {sender_name} :: To {sender_email}"
 
         # Send the email
         send_email(
@@ -90,7 +90,9 @@ def main(event, context):
         # Post to slack
         post_to_slack(
             blocks=block_message(
-                sender=sender_email, subject=subject, message=email_body
+                sender_email == sender_email,
+                sender_name=sender_name,
+                message=email_body,
             )
         )
 

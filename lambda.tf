@@ -21,9 +21,9 @@ module "portfolio_contact_me" {
   cors = {
     allow_credentials = false
     allow_origins = [
-      #"https://www.mervinhemaraju.com",
-      #"https://mervinhemaraju.com", 
-      "*" # Uncomment for testing purposes
+      "https://www.mervinhemaraju.com",
+      "https://mervinhemaraju.com",
+      #"*" 
     ]
     allow_methods  = ["POST"]
     allow_headers  = ["*"]
