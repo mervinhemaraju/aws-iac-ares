@@ -22,6 +22,35 @@ def post_to_slack(blocks, thread_ts=None, channel=None):
     return response, response["ts"]
 
 
+def send_email(sender_email, subject, email_body):
+    # * Create an EmailMessage object
+    email_message = EmailMessage()
+
+    # * Assign values to the email object
+    email_message["From"] = sender_email
+    email_message["To"] = di["RECEIVER_EMAIL"]
+    email_message["Subject"] = subject
+    email_message.set_content(email_body)
+
+    # * Log to cloudwatch
+    logging.info("Created email object with details")
+
+    # * Log in and send the email
+    with smtplib.SMTP_SSL(
+        "smtp.gmail.com", 465, context=ssl.create_default_context()
+    ) as smtp:
+        # * Login to SMTP
+        smtp.login(di["RECEIVER_EMAIL"], di["GMAIL_APP_PASSWORD"])
+
+        # * Send the mail
+        smtp.sendmail(
+            di["RECEIVER_EMAIL"], di["RECEIVER_EMAIL"], email_message.as_string()
+        )
+
+    # * Log to cloudwatch
+    logging.info("Mail sent succcessfully")
+
+
 # > Main Functions
 @main_injection
 def main(event, context):
@@ -48,35 +77,15 @@ def main(event, context):
         logging.info(f"sender_email: {sender_email}")
         logging.info(f"email_body: {email_body}")
 
-        # * Create an EmailMessage object
-        email_message = EmailMessage()
-
         # * Define a subject
         subject = f"{originator} :: From: {sender_name} :: To: {sender_email}"
 
-        # * Assign values to the email object
-        email_message["From"] = sender_email
-        email_message["To"] = di["RECEIVER_EMAIL"]
-        email_message["Subject"] = subject
-        email_message.set_content(email_body)
-
-        # * Log to cloudwatch
-        logging.info("Created email object with details")
-
-        # * Log in and send the email
-        with smtplib.SMTP_SSL(
-            "smtp.gmail.com", 465, context=ssl.create_default_context()
-        ) as smtp:
-            # * Login to SMTP
-            smtp.login(di["RECEIVER_EMAIL"], di["GMAIL_APP_PASSWORD"])
-
-            # * Send the mail
-            smtp.sendmail(
-                di["RECEIVER_EMAIL"], di["RECEIVER_EMAIL"], email_message.as_string()
-            )
-
-        # * Log to cloudwatch
-        logging.info("Mail sent succcessfully")
+        # Send the email
+        send_email(
+            sender_email=sender_email,
+            subject=subject,
+            email_body=email_body,
+        )
 
         # Post to slack
         post_to_slack(
@@ -96,7 +105,7 @@ def main(event, context):
         logging.error(f"Error: {e}")
 
         # * Post alert to slack
-        post_to_slack(block_error(str(e)), channel=di["SLACK_CHANNEL_ALERTS"])
+        post_to_slack(blocks=block_error(str(e)), channel=di["SLACK_CHANNEL_ALERTS"])
 
         # * Return error
         return f"Internal server error: {str(e)}", 500
