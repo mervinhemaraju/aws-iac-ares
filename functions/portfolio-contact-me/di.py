@@ -18,6 +18,7 @@ def main_injection(func):
         di["RECEIVER_EMAIL"] = os.environ["RECEIVER_EMAIL"]
         di["SLACK_CHANNEL_MAIN"] = os.environ["SLACK_CHANNEL_MAIN"]
         di["SLACK_CHANNEL_ALERTS"] = os.environ["SLACK_CHANNEL_ALERTS"]
+        di["SECRETS_MAIN_TOKEN"] = os.environ["SECRETS_MAIN_TOKEN"]
 
         # * Secrets manager Doppler
         doppler = DopplerSDK()

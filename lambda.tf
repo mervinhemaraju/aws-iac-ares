@@ -37,6 +37,7 @@ module "portfolio_contact_me" {
     GMAIL_APP_PASSWORD   = data.doppler_secrets.prod_main.map.GMAIL_PERSONAL_APP_PASSWORD # TODO(Add KMS encryption)
     SLACK_CHANNEL_MAIN   = var.slack_channel_main
     SLACK_CHANNEL_ALERTS = var.slack_channel_alerts
+    SECRETS_MAIN_TOKEN   = var.token_doppler_iac_cloud_main
   }
 
   trusted_entities = local.constants.lambda.TRUSTED_ENTITIES
