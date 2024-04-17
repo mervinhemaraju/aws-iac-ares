@@ -66,24 +66,27 @@ def main(event, context):
         event = json.loads(event["body"]) if "body" in event else event
 
         # * Get email details from event
-        originator = event["originator"]
+        originator = event["originator"] if "originator" in event else "Unknown"
         sender_name = event["sender_name"]
         sender_email = event["sender_email"]
+        sender_subject = (
+            event["sender_subject"]
+            if "sender_subject" in event
+            else f"Message from: {sender_name} :: {sender_email}"
+        )
         email_body = event["email_body"]
 
         # * Log to Cloudwatch
         logging.info(f"originator: {originator}")
+        logging.info(f"sender_subject: {sender_subject}")
         logging.info(f"sender_name: {sender_name}")
         logging.info(f"sender_email: {sender_email}")
         logging.info(f"email_body: {email_body}")
 
-        # * Define a subject
-        subject = f"{originator} :: From {sender_name} :: To {sender_email}"
-
         # Send the email
         send_email(
             sender_email=sender_email,
-            subject=subject,
+            subject=sender_subject,
             email_body=email_body,
         )
 
@@ -93,6 +96,8 @@ def main(event, context):
                 sender_email=sender_email,
                 sender_name=sender_name,
                 message=email_body,
+                originator=originator,
+                sender_subject=sender_subject,
             )
         )
 

@@ -2,7 +2,7 @@ VALUE_COLOR_NEGATIVE = "#ff7b7b"
 VALUE_COLOR_STATEMENT = "#ffac5a"
 
 
-def block_message(sender_name, sender_email, message):
+def block_message(originator, sender_name, sender_subject, sender_email, message):
     return [
         {
             "color": VALUE_COLOR_STATEMENT,
@@ -12,7 +12,7 @@ def block_message(sender_name, sender_email, message):
                     "fields": [
                         {
                             "type": "mrkdwn",
-                            "text": f"A message was sent by `{sender_name}` from your portfolio.",
+                            "text": f"A message was sent by `{sender_name}` from {originator}.",
                         }
                     ],
                 },
@@ -22,6 +22,15 @@ def block_message(sender_name, sender_email, message):
                         {
                             "type": "mrkdwn",
                             "text": f"Email: {sender_email}",
+                        }
+                    ],
+                },
+                {
+                    "type": "section",
+                    "fields": [
+                        {
+                            "type": "mrkdwn",
+                            "text": f"Subject: *{sender_subject}*",
                         }
                     ],
                 },
