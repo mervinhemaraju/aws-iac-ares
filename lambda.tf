@@ -1,11 +1,11 @@
 # Python lambda for Email Sending
-module "portfolio_contact_me" {
+module "contact_me" {
 
   source  = "terraform-aws-modules/lambda/aws"
   version = "7.0.0"
 
-  function_name = "portfolio-contact-me"
-  description   = "The lambda for contacting me from my Portfolio."
+  function_name = "contact-me"
+  description   = "The main contact me lambda that is used  to send me messages from my websites."
   handler       = local.constants.lambda.HANDLER
   runtime       = local.constants.lambda.VERSION
 
