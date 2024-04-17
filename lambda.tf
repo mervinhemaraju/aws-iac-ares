@@ -21,9 +21,10 @@ module "contact_me" {
   cors = {
     allow_credentials = false
     allow_origins = [
-      "https://*.mervinhemaraju.com",
+      "https://www.mervinhemaraju.com",
+      "https://mes.mervinhemaraju.com",
       "https://mervinhemaraju.com",
-      "https://*.mobizintravay.com",
+      "https://www.mobizintravay.com",
       "https://mobizintravay.com",
       #"*" 
     ]
