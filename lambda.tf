@@ -22,7 +22,10 @@ module "contact_me" {
     allow_credentials = false
     allow_origins = [
       "https://www.mervinhemaraju.com",
+      "https://mes.mervinhemaraju.com",
       "https://mervinhemaraju.com",
+      "https://www.mobizintravay.com",
+      "https://mobizintravay.com",
       #"*" 
     ]
     allow_methods  = ["POST"]
