@@ -12,6 +12,15 @@ resource "aws_iam_role" "oidc_github" {
   managed_policy_arns = [aws_iam_policy.oidc_github.arn]
 }
 
+resource "aws_iam_role" "scheduler_oci_inspector" {
+  name                = "scheduler-oci-inspector"
+  description         = "The scheduler role for the oci inspector project"
+  assume_role_policy  = file("${path.module}/policies/iam_scheduler_role_trust.json")
+  managed_policy_arns = [aws_iam_policy.scheduler_oci_inspector.arn]
+
+  depends_on = [aws_iam_policy.scheduler_oci_inspector]
+}
+
 
 # IAM Policies
 resource "aws_iam_policy" "oidc_github" {
@@ -23,17 +32,6 @@ resource "aws_iam_policy" "oidc_github" {
   )
 }
 
-# Scheduler IAM Role
-resource "aws_iam_role" "scheduler_oci_inspector" {
-  name                = "scheduler-oci-inspector"
-  description         = "The scheduler role for the oci inspector project"
-  assume_role_policy  = file("${path.module}/policies/iam_scheduler_role_trust.json")
-  managed_policy_arns = [aws_iam_policy.scheduler.arn]
-
-  depends_on = [aws_iam_policy.scheduler_oci_inspector]
-}
-
-# Scheduler IAM Policy
 resource "aws_iam_policy" "scheduler_oci_inspector" {
 
   name        = "scheduler-oci-inspector-policy"
