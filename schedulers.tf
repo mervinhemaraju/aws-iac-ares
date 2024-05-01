@@ -9,7 +9,7 @@ resource "aws_scheduler_schedule" "oci_inspector_helios" {
   description         = "The schedule for Oci Inspectore Helios"
   group_name          = aws_scheduler_schedule_group.oci_inspector.name
   schedule_expression = "rate(2 hours)"
-  state               = "ENABELD"
+  state               = "ENABLED"
 
   flexible_time_window {
     mode = "OFF"
@@ -31,7 +31,7 @@ resource "aws_scheduler_schedule" "oci_inspector_poseidon" {
   description         = "The schedule for Oci Inspectore Poseidon"
   group_name          = aws_scheduler_schedule_group.oci_inspector.name
   schedule_expression = "rate(2 hours)"
-  state               = "ENABELD"
+  state               = "ENABLED"
 
   flexible_time_window {
     mode = "OFF"
