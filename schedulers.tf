@@ -16,7 +16,7 @@ resource "aws_scheduler_schedule" "oci_inspector_helios" {
   }
 
   target {
-    arn      = module.oci_inspector_helios.function_arn
+    arn      = module.oci_inspector_helios.lambda_function_arn
     role_arn = aws_iam_role.scheduler_oci_inspector.arn
 
     retry_policy {
@@ -38,7 +38,7 @@ resource "aws_scheduler_schedule" "oci_inspector_poseidon" {
   }
 
   target {
-    arn      = module.oci_inspector_poseidon.function_arn
+    arn      = module.oci_inspector_poseidon.lambda_function_arn
     role_arn = aws_iam_role.scheduler_oci_inspector.arn
 
     retry_policy {
