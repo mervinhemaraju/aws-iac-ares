@@ -2,8 +2,15 @@
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "AllowECRActions",
             "Effect": "Allow",
             "Action": "ecr:*",
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowS3Actions",
+            "Effect": "Allow",
+            "Action": "s3:*",
             "Resource": "*"
         }
     ]
