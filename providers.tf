@@ -12,7 +12,7 @@ provider "aws" {
 
 # * Doppler Provider for Secrets Manager
 provider "doppler" {
-  doppler_token = var.token_doppler_iac_cloud_main
+  doppler_token = var.token_doppler_global
 }
 
 # * The Terraform Module
