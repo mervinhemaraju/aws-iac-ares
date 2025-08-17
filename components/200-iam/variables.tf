@@ -6,11 +6,6 @@ variable "region" {
   default     = "eu-west-1"
 }
 
-variable "token_doppler_global" {
-  type        = string
-  description = "The Doppler token for the secrets manager cloud main repo."
-}
-
 variable "bucket_key_prefix_iac" {
   type        = string
   description = "The prefix for the bucket key."

@@ -10,11 +10,6 @@ provider "aws" {
   }
 }
 
-# * Doppler Provider for Secrets Manager
-provider "doppler" {
-  doppler_token = var.token_doppler_global
-}
-
 # * The Terraform Module
 terraform {
 
@@ -38,11 +33,6 @@ terraform {
     tls = {
       source  = "hashicorp/tls"
       version = "4.0.5"
-    }
-
-    doppler = {
-      source  = "DopplerHQ/doppler"
-      version = "1.7.0"
     }
   }
 }
