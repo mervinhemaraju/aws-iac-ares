@@ -1,4 +1,4 @@
-# IAM Roles
+# IAM Role
 resource "aws_iam_role" "oidc_github" {
   name        = "github-actions"
   description = "The role for GitHub to assume"
@@ -9,11 +9,10 @@ resource "aws_iam_role" "oidc_github" {
       github_oidc_audience = local.constants.oidc.github.audience
     }
   )
-  managed_policy_arns = [aws_iam_policy.oidc_github.arn]
 }
 
 
-# IAM Policies
+# IAM Policy
 resource "aws_iam_policy" "oidc_github" {
   name        = "github-actions"
   path        = "/"
@@ -21,4 +20,10 @@ resource "aws_iam_policy" "oidc_github" {
   policy = file(
     "${path.module}/policies/iam_oidc_github_role_actions.json"
   )
+}
+
+# Role Policy Attachment
+resource "aws_iam_role_policy_attachment" "oidc_github" {
+  role       = aws_iam_role.oidc_github.name
+  policy_arn = aws_iam_policy.oidc_github.arn
 }

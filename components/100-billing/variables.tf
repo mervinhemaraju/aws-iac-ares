@@ -25,16 +25,3 @@ variable "bucket_region" {
   type        = string
   description = "The region of the bucket."
 }
-
-variable "slack_channel_main" {
-  type        = string
-  description = "The main slack channel to post to."
-  default     = "#general"
-}
-
-
-variable "slack_channel_alerts" {
-  type        = string
-  description = "The alerting slack channel"
-  default     = "#alerts"
-}
