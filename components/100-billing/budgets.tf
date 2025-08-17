@@ -41,7 +41,7 @@ resource "aws_budgets_budget" "aws_strict_spend_budget" {
   # * Actual budget notification
   notification {
     comparison_operator        = "GREATER_THAN"
-    threshold                  = 0
+    threshold                  = 100
     threshold_type             = "ABSOLUTE_VALUE"
     notification_type          = "ACTUAL"
     subscriber_email_addresses = [local.constants.owner_email_address]
