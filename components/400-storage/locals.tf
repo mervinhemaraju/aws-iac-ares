@@ -17,5 +17,10 @@ locals {
   # > State file buckets
   state_buckets = [
     { name = "tk-website-landing" },
+    { name = "github" },
+    { name = "cloudflare" },
+    { name = "spacelift" },
+    { name = "aws" },
+    { name = "oracle-cloud" },
   ]
 }
