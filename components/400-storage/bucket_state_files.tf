@@ -4,7 +4,7 @@ module "s3_state_files" {
 
   for_each = { for bucket in local.state_buckets : bucket.name => bucket }
 
-  bucket           = "terraform-state-${each.value.name}"
+  bucket           = "tfstate-${each.value.name}-${data.aws_caller_identity.current.account_id}-${var.region}-an"
   bucket_namespace = "account-regional"
 
   control_object_ownership = true
