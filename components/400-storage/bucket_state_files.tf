@@ -1,10 +1,14 @@
 module "s3_state_files" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 4.0"
+  version = "~> 5.12"
 
   for_each = { for bucket in local.state_buckets : bucket.name => bucket }
 
-  bucket = "terraform-state-${each.value.name}"
+  bucket           = "terraform-state-${each.value.name}"
+  bucket_namespace = "account-regional"
+
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerEnforced"
 
   # Versioning is essential for state file recovery
   versioning = {
